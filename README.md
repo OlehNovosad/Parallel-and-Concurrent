@@ -131,3 +131,36 @@ Learn how to implement background services and understand the implications of da
 - **Graceful Shutdown** - Considerations for I/O operations in daemon threads
 
 **Key Takeaway:** Daemon threads allow main programs to exit while background tasks run, but abrupt termination may cause issues with I/O operations; use cautiously for non-recovery tasks like garbage collection.
+
+---
+
+#### [9. Data Races in Concurrent Programming](docs/Data_Race.md)
+
+Understand what data races are, how they occur, and why they're difficult to debug in concurrent systems.
+
+**Key Concepts:**
+
+- **Anatomy of a Data Race** - Reading, modifying, and writing operations on shared resources
+- **Race Condition** - When two or more threads access the same memory location and at least one modifies it
+- **Timing Issues** - Unpredictable thread scheduling leads to different execution outcomes
+- **Debugging Challenges** - Intermittent and hard-to-reproduce issues due to timing dependencies
+
+**Key Takeaway:** Data races are a critical concern in concurrent programming; they occur when multiple threads access and modify shared resources without proper synchronization, and their unpredictable nature makes them difficult to identify and resolve.
+
+---
+
+#### [10. Concurrent Access and Critical Sections](docs/Mutual_Execution.md)
+
+Learn how to protect shared resources from data races by using critical sections and mutual exclusion mechanisms.
+
+**Key Concepts:**
+
+- **Critical Sections** - Parts of code that access shared resources and must be protected from simultaneous access
+- **Mutex (Mutual Exclusion)** - A lock mechanism that ensures only one thread can execute critical code at a time
+- **Atomic Operations** - Single, indivisible operations that cannot be interrupted (e.g., acquiring a lock)
+- **Thread Blocking** - Threads wait for a mutex to become available before proceeding
+- **Lock Management** - Best practices for keeping critical sections short and efficient
+
+**Key Takeaway:** Protecting critical sections with mutexes prevents data races by ensuring only one thread accesses shared resources at a time; keeping protected code minimal improves efficiency and prevents threads from blocking unnecessarily.
+
+---
