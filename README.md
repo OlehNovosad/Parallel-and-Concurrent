@@ -56,3 +56,78 @@ Explore the two main memory organization models in parallel computing systems.
 **Key Takeaway:** Shared memory is easier to program but may not scale well; distributed memory is highly scalable but more complex to program.
 
 ---
+
+#### [4. Concurrency versus Parallelism in Computing](docs/Concurency_vs_Parallel.md)
+
+Understand the fundamental distinction between concurrency and parallelism, and when each approach is most beneficial.
+
+**Topics:**
+
+- Concurrent execution and program structure
+- Parallel execution with multiple processors
+- Forms of parallel hardware (multicore, GPUs, clusters)
+- Concurrency for I/O-dependent tasks
+- Parallelism for computation-intensive tasks
+
+**Key Takeaway:** Concurrency is about program structure and managing multiple things, while parallelism is about doing multiple things simultaneously; concurrency enables potential parallelism but doesn't guarantee it.
+
+---
+
+#### [5. Operating System Scheduling in Concurrent Computing](docs/Execution_scheduling.md)
+
+Learn how operating systems manage processor resources and schedule threads and processes for execution.
+
+**Topics:**
+
+- Process management and the ready queue
+- Multiprocessor handling and resource utilization
+- Context switching overhead and frequency
+- Preemptive vs. non-preemptive scheduling
+- Impact of scheduling on program execution order
+
+**Key Takeaway:** Schedulers handle timing and execution order transparently; programmers should write code that works correctly regardless of specific scheduling decisions made by the OS.
+
+---
+
+#### [6. Thread Lifecycle and States](docs/Thread_lifecycle.md)
+
+Explore the journey of a thread from creation to termination and the states it transitions through.
+
+**Thread States:**
+
+- **NEW** - Created but not yet running; doesn't consume CPU resources
+- **RUNNABLE** - Ready to execute; can be scheduled by the OS
+- **BLOCKED** - Waiting for an event or resource; doesn't use CPU resources
+- **TERMINATED** - Execution complete; notifies parent thread
+
+**Key Takeaway:** Understanding thread states is crucial for managing concurrent execution and properly coordinating parent-child thread relationships using methods like `join()`.
+
+---
+
+#### [7. Threads vs. Processes](docs/Threads_vs_Process.md)
+
+Compare the characteristics, resource management, and use cases of threads and processes in concurrent systems.
+
+**Key Differences:**
+
+- **Processes** have independent address spaces; **Threads** share address space within a process
+- **Processes** are isolated from each other; **Threads** easily share resources and communicate
+- **Threads** are lightweight; creating and switching between threads has less overhead
+- **Processes** require special mechanisms for communication; **Threads** communicate directly
+
+**Key Takeaway:** Threads are generally preferred due to their lightweight nature and easier resource sharing, though the choice depends on the specific task and system requirements.
+
+---
+
+#### [8. Background Tasks (Detached Threads)](docs/Detached_Threads.md)
+
+Learn how to implement background services and understand the implications of daemon threads.
+
+**Key Concepts:**
+
+- **Daemon Threads** - Background threads that don't prevent program exit
+- **Normal Threads** - Prevent program exit until all complete
+- **Garbage Collection** - Common example of daemon thread usage
+- **Graceful Shutdown** - Considerations for I/O operations in daemon threads
+
+**Key Takeaway:** Daemon threads allow main programs to exit while background tasks run, but abrupt termination may cause issues with I/O operations; use cautiously for non-recovery tasks like garbage collection.
