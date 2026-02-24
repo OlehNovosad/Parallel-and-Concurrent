@@ -6,7 +6,7 @@ A comprehensive guide to understanding parallel and concurrent computing concept
 
 ### 📚 Core Concepts
 
-#### [1. Sequential vs. Parallel Computing](Sequential_vs_Parallel_Computing.md)
+#### [1. Sequential vs. Parallel Computing](docs/Sequential_vs_Parallel_Computing.md)
 
 Learn the differences between traditional sequential computing and modern parallel computing approaches.
 
@@ -22,7 +22,7 @@ Learn the differences between traditional sequential computing and modern parall
 
 ---
 
-#### [2. Four Classes of Computer Architecture (Flynn's Taxonomy)](Flynn_Taxonomy.md)
+#### [2. Four Classes of Computer Architecture (Flynn's Taxonomy)](docs/Flynn_Taxonomy.md)
 
 Understand the major classifications of parallel computer architectures based on instruction and data streams.
 
@@ -39,7 +39,7 @@ Understand the major classifications of parallel computer architectures based on
 
 ---
 
-#### [3. Shared vs. Distributed Memory](Shared_Distributed_mem.md)
+#### [3. Shared vs. Distributed Memory](docs/Shared_Distributed_mem.md)
 
 Explore the two main memory organization models in parallel computing systems.
 
