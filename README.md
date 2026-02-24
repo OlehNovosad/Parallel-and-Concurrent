@@ -39,7 +39,7 @@ Understand the major classifications of parallel computer architectures based on
 
 ---
 
-#### [3. Shared vs. Distributed Memory](docs/Shared_Distributed_mem.md)
+#### [3. Shared vs. Distributed Memory](docs/Shared_vs_Distributed_Memory.md)
 
 Explore the two main memory organization models in parallel computing systems.
 
@@ -73,7 +73,7 @@ Understand the fundamental distinction between concurrency and parallelism, and 
 
 ---
 
-#### [5. Operating System Scheduling in Concurrent Computing](docs/Execution_scheduling.md)
+#### [5. Operating System Scheduling in Concurrent Computing](docs/Execution_Scheduling.md)
 
 Learn how operating systems manage processor resources and schedule threads and processes for execution.
 
@@ -89,7 +89,7 @@ Learn how operating systems manage processor resources and schedule threads and 
 
 ---
 
-#### [6. Thread Lifecycle and States](docs/Thread_lifecycle.md)
+#### [6. Thread Lifecycle and States](docs/Thread_Lifecycle.md)
 
 Explore the journey of a thread from creation to termination and the states it transitions through.
 
