@@ -207,3 +207,70 @@ Explore reader-writer locks, which enable better concurrency by allowing multipl
 - **Implementation Complexity** - More complex to implement than standard mutexes; use more resources
 
 **Key Takeaway:** Reader-writer locks improve concurrency for read-heavy workloads by allowing simultaneous reads while protecting against concurrent writes; however, they're best used when read operations far exceed write operations.
+
+---
+
+#### [14. The Dining Philosophers Problem](docs/Deadlock.md)
+
+Understand the classic synchronization problem that demonstrates how competing for multiple locks can lead to deadlock.
+
+**Key Concepts:**
+
+- **Scenario** - Two philosophers alternate between thinking and eating from a shared plate
+- **Chopsticks as Mutexes** - Each philosopher must acquire two locks before entering the critical section
+- **Deadlock Condition** - Both philosophers acquire one chopstick each and wait indefinitely for the other
+- **Liveness** - The property ensuring concurrent programs make progress, even with resource competition
+- **Real-World Example** - Banking applications transferring funds between accounts requiring multiple locks
+- **Solution** - Lock prioritization strategy to prevent circular wait conditions
+
+**Key Takeaway:** The Dining Philosophers Problem illustrates how deadlock can occur through multiple lock competition; solutions involve lock ordering and prioritization strategies.
+
+---
+
+#### [15. Abandoned Lock: A New Form of Deadlock](docs/Abandoned_Lock.md)
+
+Learn how unexpected thread termination without releasing locks can create deadlock scenarios.
+
+**Key Concepts:**
+
+- **Definition** - A thread acquires a lock and exits before releasing it, blocking other threads indefinitely
+- **Cause** - Unexpected thread termination without automatic lock release
+- **Impact** - Other threads waiting for the lock become stuck, unable to proceed
+- **Example** - The Dining Philosophers scenario where one philosopher abruptly leaves with a chopstick
+- **Root Cause** - Combining resource competition with unexpected termination
+
+**Key Takeaway:** Abandoned locks demonstrate that deadlocks can result not just from resource competition but also from unexpected thread termination; proper error handling and cleanup are essential.
+
+---
+
+#### [16. Starvation](docs/Starvation.md)
+
+Understand how improper thread prioritization and resource allocation can prevent threads from making progress.
+
+**Key Concepts:**
+
+- **Definition** - A thread is perpetually denied access to resources it needs
+- **Cause** - Greedy threads holding locks frequently, preventing others from accessing shared resources
+- **Thread Priorities** - Higher-priority threads get scheduled more often; lower-priority threads struggle to access resources
+- **System Impact** - Significantly affects system performance and fairness in resource allocation
+- **Prevention** - Consider thread priorities and limit concurrent threads appropriately
+
+**Key Takeaway:** Starvation occurs when threads are perpetually denied resource access; designers must balance thread priorities and resource competition to ensure all threads can make progress.
+
+---
+
+#### [17. Livelock](docs/Livelock.md)
+
+Explore situations where threads actively attempt to resolve conflicts but end up preventing each other's progress.
+
+**Key Concepts:**
+
+- **Definition** - Multiple threads block each other from making progress through mutual interference
+- **Active Response** - Unlike deadlock, threads are continuously trying to resolve the problem but fail
+- **Characteristics** - Threads respond to each other's actions, all are busy, but no actual accomplishment occurs
+- **Cause** - Deadlock recovery algorithms where multiple processes simultaneously attempt resolution
+- **Prevention** - Ensure only one process takes action; use priority systems or random selection
+
+**Key Takeaway:** Livelock differs from deadlock in that threads are actively trying to resolve conflicts but fail through mutual interference; prevention requires ensuring only one process acts at a time.
+
+---
