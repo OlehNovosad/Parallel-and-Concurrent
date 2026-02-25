@@ -164,3 +164,46 @@ Learn how to protect shared resources from data races by using critical sections
 **Key Takeaway:** Protecting critical sections with mutexes prevents data races by ensuring only one thread accesses shared resources at a time; keeping protected code minimal improves efficiency and prevents threads from blocking unnecessarily.
 
 ---
+
+#### [11. Reentrant Mutexes](docs/Reentrant_Mutexes.md)
+
+Understand reentrant mutexes and how they prevent deadlocks when the same thread needs to lock a mutex multiple times.
+
+**Key Concepts:**
+
+- **Reentrant Mutex** - A mutex that can be locked multiple times by the same thread; keeps track of lock count internally
+- **Recursive Locks** - Alternative name for reentrant mutexes; essential for recursive functions
+- **Deadlock Prevention** - Standard mutexes cause deadlock if a thread tries to lock the same mutex; reentrant mutexes prevent this
+- **Use Cases** - Nested function calls and recursive functions that need to lock resources
+
+**Key Takeaway:** Reentrant mutexes allow the same thread to acquire the same lock multiple times without deadlocking; they simplify code but require equal numbers of lock and unlock calls.
+
+---
+
+#### [12. Try-Lock](docs/Try_Lock.md)
+
+Learn about non-blocking lock acquisition and how try-locks enable threads to continue with alternative tasks when a resource is unavailable.
+
+**Key Concepts:**
+
+- **Non-Blocking Lock** - Attempts to acquire a lock and immediately returns (true if successful, false if unavailable)
+- **Conditional Locking** - Allows threads to check lock availability and proceed with alternative tasks
+- **Efficiency** - Prevents threads from blocking when multiple tasks are available
+- **Use Cases** - Tasks with multiple independent operations where blocking on one resource is inefficient
+
+**Key Takeaway:** Try-locks enable efficient multitasking by allowing threads to attempt lock acquisition and immediately proceed with alternative work if the resource is unavailable, rather than waiting indefinitely.
+
+---
+
+#### [13. Reader-Writer Locks (Shared Mutexes)](docs/Shared_Mutex.md)
+
+Explore reader-writer locks, which enable better concurrency by allowing multiple threads to read shared data simultaneously while maintaining exclusive write access.
+
+**Key Concepts:**
+
+- **Shared Read Mode** - Multiple threads can acquire the lock concurrently for reading operations
+- **Exclusive Write Mode** - Only one thread can hold the lock for writing; no other reads or writes allowed
+- **Performance Optimization** - Beneficial when read operations significantly outnumber write operations
+- **Implementation Complexity** - More complex to implement than standard mutexes; use more resources
+
+**Key Takeaway:** Reader-writer locks improve concurrency for read-heavy workloads by allowing simultaneous reads while protecting against concurrent writes; however, they're best used when read operations far exceed write operations.
