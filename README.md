@@ -274,3 +274,49 @@ Explore situations where threads actively attempt to resolve conflicts but end u
 **Key Takeaway:** Livelock differs from deadlock in that threads are actively trying to resolve conflicts but fail through mutual interference; prevention requires ensuring only one process acts at a time.
 
 ---
+
+#### [18. Limitations of Locks and Mutexes](docs/Condition_Variables.md)
+
+Understand the limitations of basic locks and how condition variables enable efficient thread synchronization and signaling.
+
+**Key Concepts:**
+
+- **Limitations of Locks** - Mutexes restrict simultaneous access but don't provide a way for threads to signal each other
+- **Condition Variables** - A queue for threads waiting for a specific condition to occur; works alongside mutexes
+- **Monitors** - Higher-level construct combining mutual exclusion with mechanisms to wait and be notified
+- **Operations** - `Wait` (releases lock and sleeps), `Signal` (wakes one thread), `Broadcast` (wakes all threads)
+- **Practical Application** - Shared queue/buffer using a mutex and two condition variables (not-full, not-empty)
+
+**Key Takeaway:** Condition variables enable efficient thread synchronization by eliminating busy-waiting; they allow threads to wait for specific conditions and signal each other when those conditions are met.
+
+---
+
+#### [19. Producer-Consumer Pattern](docs/Producer_Consumer.md)
+
+Explore the classic producer-consumer design pattern and how to safely coordinate threads that produce and consume shared data.
+
+**Key Concepts:**
+
+- **Queue Structure** - Shared data structure operating on FIFO principle for passing data between producers and consumers
+- **Synchronization Challenges** - Mutual exclusion required; producers must not add to a full queue, consumers must not remove from an empty queue
+- **Buffer Management** - Buffer overflow risk if consumers can't keep up; unbounded queues still limited by physical memory
+- **Processing Rates** - Average production rate should be less than consumption rate; bursts require consumers to catch up
+- **Pipeline Architecture** - Chain of producer-consumer pairs connected by buffers, enabling parallel processing at different stages
+
+**Key Takeaway:** The producer-consumer pattern requires careful synchronization to prevent overflow and underflow; pipeline architectures extend the pattern for parallel multi-stage processing.
+
+---
+
+#### [20. Semaphores](docs/Semaphores.md)
+
+Learn about semaphores as a flexible synchronization mechanism that can allow multiple threads to access shared resources simultaneously.
+
+**Key Concepts:**
+
+- **Semaphore Counter** - Tracks how many times a semaphore has been acquired or released
+- **Acquire/Release** - Decrement counter on acquire (blocks at zero); increment counter on release
+- **Counting Semaphore** - Values ≥ 0, used to manage a limited pool of resources (e.g., database connections)
+- **Binary Semaphore** - Restricted to 0 or 1; similar to a mutex but any thread can release it
+- **Signaling Mechanism** - Semaphores can be used to signal between threads, not just guard resources
+
+**Key Takeaway:** Semaphores are more flexible than mutexes, allowing controlled concurrent access to resource pools and enabling thread signaling; binary semaphores resemble mutexes but differ in that any thread can release them.
