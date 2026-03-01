@@ -388,3 +388,36 @@ Learn how thread pools provide a more efficient alternative to creating individu
 **Key Takeaway:** Thread pools improve performance and responsiveness by reusing a fixed set of worker threads across many tasks, making them especially effective when task execution time is shorter than thread creation time.
 
 ---
+
+#### [25. Futures](docs/Future.md)
+
+Learn how futures serve as placeholders for asynchronous results, allowing threads to continue working while waiting for a value to be computed.
+
+**Key Concepts:**
+
+- **Future** - A read-only placeholder that represents the result of an asynchronous task, available once the task completes
+- **"I Owe You" Semantics** - The executing thread returns a future immediately, promising to fill it with a result later
+- **Non-Blocking Continuation** - The requesting thread can proceed with other work while holding a future, rather than blocking
+- **Resolving / Fulfilling** - The act of writing the final result value into the future, making it available to any waiting threads
+- **Blocking on Result** - A thread that needs the future's value before it is resolved will block until it becomes available
+
+**Key Takeaway:** Futures decouple task submission from result retrieval, enabling threads to keep working in parallel and only block when the result is strictly needed; this improves concurrency and responsiveness in asynchronous programs.
+
+---
+
+#### [26. Divide-and-Conquer Algorithms](docs/Divide_Conquer.md)
+
+Learn how divide-and-conquer algorithms break complex problems into smaller subproblems that can be solved in parallel, then combined for a final result.
+
+**Key Concepts:**
+
+- **Divide** - The main problem is split into smaller subproblems of roughly equal size
+- **Conquer** - Each subproblem is solved recursively, down to a defined base case
+- **Combine** - Solutions to subproblems are merged to form the final solution
+- **Base Case** - When the problem is small enough to solve directly without further subdivision
+- **Parallelism Opportunity** - Subproblems are independent, allowing parallel execution on different processors
+- **Overhead Consideration** - Not all divide-and-conquer algorithms benefit from parallelization; problem size and complexity must justify the overhead
+
+**Key Takeaway:** Divide-and-conquer algorithms are naturally suited for parallel execution because subproblems are independent; however, the overhead of parallelization must be weighed against the potential performance gains based on problem size and complexity.
+
+---
