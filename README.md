@@ -320,3 +320,71 @@ Learn about semaphores as a flexible synchronization mechanism that can allow mu
 - **Signaling Mechanism** - Semaphores can be used to signal between threads, not just guard resources
 
 **Key Takeaway:** Semaphores are more flexible than mutexes, allowing controlled concurrent access to resource pools and enabling thread signaling; binary semaphores resemble mutexes but differ in that any thread can release them.
+
+---
+
+#### [21. Data Races vs. Race Conditions](docs/Race_Condition.md)
+
+Understand the important distinction between data races and race conditions, two related but fundamentally different concurrency problems.
+
+**Key Concepts:**
+
+- **Data Races** - Two or more threads access the same memory location concurrently, with at least one writing; can be detected and prevented with automated tools and mutual exclusion
+- **Race Conditions** - Timing-dependent flaws in program execution order that cause incorrect behavior; more difficult to detect and prevent than data races
+- **Distinct Problems** - You can have data races without race conditions and vice versa; they are related but not dependent on each other
+- **Mutual Exclusion Not Sufficient** - Protecting shared resources with a mutex prevents data races but doesn't necessarily prevent race conditions
+- **Detection Challenges** - Race conditions are "heisenbugs" that disappear when studied; they may only manifest under specific timing conditions; inserting sleep statements can help uncover them but may inadvertently prevent them from occurring
+
+**Key Takeaway:** While data races and race conditions are often confused due to their similar names, they are distinct problems; data races can be reliably detected and prevented through synchronization, while race conditions depend on thread execution order and are much harder to identify and reproduce.
+
+---
+
+#### [22. Preventing Race Conditions with Barriers](docs/Barrier.md)
+
+Learn how barriers provide a powerful synchronization mechanism for coordinating thread execution and preventing race conditions.
+
+**Key Concepts:**
+
+- **Barrier Definition** - A synchronization mechanism that acts as a stopping point for a group of threads, preventing them from proceeding until all (or a sufficient number) have reached the barrier
+- **Barrier Analogy** - A sports team huddle where players wait for everyone to arrive before breaking the huddle and resuming activities
+- **Solving Race Conditions** - Barriers ensure the correct order of operations regardless of thread scheduling order
+- **Deterministic Results** - By enforcing synchronization points, barriers guarantee consistent results even with varying thread execution orders
+- **Execution Flexibility** - Threads can execute in any order before the barrier, but all must wait before proceeding after the barrier
+
+**Key Takeaway:** Barriers provide a reliable synchronization method for coordinating threads, ensuring correct execution order and preventing race conditions by guaranteeing that all threads reach a synchronization point before any can proceed further.
+
+---
+
+#### [23. Computational Graphs](docs/Computational_Graph.md)
+
+Understand how computational graphs model dependencies and parallelism opportunities between program steps using directed acyclic graphs.
+
+**Key Concepts:**
+
+- **Directed Acyclic Graph (DAG)** - Nodes represent tasks; directed edges represent dependencies and execution order
+- **Spawn / Fork** - A node that initiates parallel execution paths
+- **Sync / Join** - A node that ensures all parallel branches complete before continuing
+- **Critical Path** - The longest sequence of dependent operations, determining the minimum possible execution time
+- **Work** - Total execution time if run sequentially on a single processor (sum of all task times)
+- **Span** - Shortest possible execution time with unlimited parallelization (sum of critical path times)
+- **Ideal Parallelism** - Ratio of Work to Span; indicates the maximum theoretical speedup from parallelization
+
+**Key Takeaway:** Computational graphs provide a visual and analytical framework for identifying parallelism opportunities; the ratio of work to span reveals the upper bound on performance gains achievable through parallelization.
+
+---
+
+#### [24. Thread Pool](docs/Thread_Pool.md)
+
+Learn how thread pools provide a more efficient alternative to creating individual threads for each task by reusing a managed collection of worker threads.
+
+**Key Concepts:**
+
+- **Thread Creation Overhead** - Spawning a new thread for every task incurs processor time and memory costs that accumulate at scale
+- **Worker Threads** - A fixed pool of reusable threads that pick up tasks from a queue, eliminating repeated creation/destruction costs
+- **Task Queue** - Tasks are submitted to the pool's queue, analogous to a to-do list that worker threads pull from
+- **Reduced Overhead** - Reusing threads avoids the cost of creating new ones for each task
+- **Improved Responsiveness** - Preexisting threads are ready immediately, removing thread-creation latency from task execution
+
+**Key Takeaway:** Thread pools improve performance and responsiveness by reusing a fixed set of worker threads across many tasks, making them especially effective when task execution time is shorter than thread creation time.
+
+---

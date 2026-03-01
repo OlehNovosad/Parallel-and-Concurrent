@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/olehnovosad/Documents/repos/parallel_concurrent_prog/barrier/out/build/Clang 17.0.0 arm64-apple-darwin25.3.0",
+  "command": "/usr/bin/clang++ -DBOOST_ATOMIC_DYN_LINK -DBOOST_ATOMIC_NO_LIB -DBOOST_CHRONO_DYN_LINK -DBOOST_CHRONO_NO_LIB -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_DATE_TIME_DYN_LINK -DBOOST_DATE_TIME_NO_LIB -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -o CMakeFiles/barrier.dir/main.cpp.o -c /Users/olehnovosad/Documents/repos/parallel_concurrent_prog/barrier/main.cpp",
+  "file": "/Users/olehnovosad/Documents/repos/parallel_concurrent_prog/barrier/main.cpp",
+  "output": "CMakeFiles/barrier.dir/main.cpp.o"
+}
+]
