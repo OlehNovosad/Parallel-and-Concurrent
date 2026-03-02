@@ -470,3 +470,71 @@ Learn how to empirically measure parallel performance using speedup and efficien
 **Key Takeaway:** Speedup and efficiency are complementary metrics for evaluating parallelization; reliable measurement requires controlled conditions, multiple runs, and awareness of environmental factors like JIT compilation and cache state.
 
 ---
+
+#### [30. Partitioning: Breaking Down the Problem](docs/Partitioning.md)
+
+Learn how to decompose a parallel problem into discrete chunks of work using domain and functional decomposition strategies.
+
+**Key Concepts:**
+
+- **Partitioning** - Dividing a problem into discrete chunks of work for distribution among multiple tasks, focusing on maximum decomposition without yet considering processor count
+- **Domain (Data) Decomposition** - Divides the data into small, equal-sized partitions; computations are then associated with each partition (e.g., splitting a tray of cupcakes into sections)
+- **Functional Decomposition** - Divides the overall computational work into separate tasks performing different portions; data requirements are a secondary consideration (e.g., separating mixing, baking, and frosting)
+- **Complementary Approaches** - Domain and functional decomposition are often used together; starting with domain decomposition forms the foundation for many parallel algorithms
+- **Optimization Opportunities** - Exploring both approaches can reveal issues and optimizations missed by considering data alone
+
+**Key Takeaway:** Partitioning is the first step in parallel design; domain decomposition divides the data while functional decomposition divides the work — using both together yields the most insight into parallelism opportunities and potential bottlenecks.
+
+---
+
+#### [31. Communication between Parallel Tasks](docs/Communication.md)
+
+Learn how parallel tasks coordinate and share data through different communication structures, and understand the factors that affect communication performance.
+
+**Key Concepts:**
+
+- **Independent Tasks** - Some decompositions require no data sharing between tasks; no communication needed
+- **Interdependent Tasks** - Tasks that require information from other tasks (e.g., neighboring data values) to complete their work
+- **Point-to-Point Communication** - Direct links between neighboring tasks; involves sender (producer) and receiver (consumer) roles
+- **Collective Communication** - Broadcasting (one-to-many) and scattering/gathering for communicating with larger groups
+- **Centralized Management** - One coordinator task manages distributed workers; can become a bottleneck at scale
+- **Synchronous vs. Asynchronous** - Blocking communication waits for completion; non-blocking allows tasks to continue while communicating
+- **Performance Factors** - Processing overhead, latency (message travel time), and bandwidth (data per unit time) impact overall efficiency
+
+**Key Takeaway:** Choosing the right communication structure — point-to-point, collective, or centralized — depends on task dependencies and scale; in distributed systems, latency and bandwidth become critical, while single-system multithreaded programs are less affected by these factors.
+
+---
+
+#### [32. Agglomeration](docs/Agglomeration.md)
+
+Learn how to combine fine-grained parallel tasks into larger chunks to reduce communication overhead and match the number of available processors.
+
+**Key Concepts:**
+
+- **Agglomeration** - The process of combining tasks from the partitioning stage into larger groups to improve efficiency and match available hardware
+- **Fine-Grained Parallelism** - Many small tasks; better load balancing but high communication and synchronization overhead
+- **Coarse-Grained Parallelism** - Few large tasks; lower communication overhead but risk of load imbalance
+- **Medium-Grained Parallelism** - Balances the trade-offs between fine and coarse approaches; often the most efficient for general-purpose hardware
+- **Communication Reduction** - Agglomerating tasks reduces the number of communication events, though each event may carry more data
+- **Flexible Design** - Avoid hard-coded task counts; use compile-time or runtime parameters to adapt granularity to the available processors
+
+**Key Takeaway:** Agglomeration bridges the gap between theoretical task decomposition and practical hardware constraints; combining tasks reduces communication overhead while preserving parallelism — the goal is to find the granularity sweet spot that maximizes computation relative to communication cost.
+
+---
+
+#### [33. Mapping in Parallel Design](docs/Mapping.md)
+
+Learn how the final stage of parallel design assigns tasks to processors to minimize total execution time through strategic placement.
+
+**Key Concepts:**
+
+- **Mapping** - The fourth and final stage of parallel design; specifies where each task will be executed across available processors
+- **Applicability** - Not relevant for single-processor systems or systems with automated task scheduling; primarily used in distributed systems and specialized parallel hardware
+- **Increasing Concurrency** - Place tasks capable of executing concurrently on different processors to maximize parallelism
+- **Improving Locality** - Place frequently communicating tasks on the same processor to reduce communication overhead
+- **Design Trade-offs** - Concurrency and locality goals often conflict, requiring careful balancing
+- **Dynamic Load Balancing** - Dynamic workloads may require periodic remapping; load-balancing algorithms leverage domain decomposition and agglomeration techniques
+
+**Key Takeaway:** Mapping is the bridge between logical task design and physical hardware execution; effective mapping minimizes total execution time by balancing concurrency against communication locality, and must adapt to both program structure and the target hardware.
+
+---
