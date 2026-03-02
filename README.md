@@ -421,3 +421,52 @@ Learn how divide-and-conquer algorithms break complex problems into smaller subp
 **Key Takeaway:** Divide-and-conquer algorithms are naturally suited for parallel execution because subproblems are independent; however, the overhead of parallelization must be weighed against the potential performance gains based on problem size and complexity.
 
 ---
+
+#### [27. Weak Scaling vs. Strong Scaling](docs/Speedup_Latency_Throughput.md)
+
+Understand the two primary scaling strategies in parallel computing and the key metrics used to evaluate parallel performance.
+
+**Key Concepts:**
+
+- **Weak Scaling** - Increase problem size proportionally with added processors, keeping workload per processor constant; goal is to tackle larger problems in the same time
+- **Strong Scaling** - Distribute a fixed-size problem across more processors to execute it faster; goal is to reduce execution time
+- **Throughput** - Number of tasks completed per unit time; increases as more processors are added
+- **Latency** - Time to complete a single task from start to finish; remains constant per task regardless of processor count
+- **Speedup** - Ratio of sequential to parallel execution time; e.g., 60 min sequential / 30 min parallel = speedup of 2
+- **Diminishing Returns** - Sequential portions of a program limit maximum achievable speedup, leading to reduced gains as more processors are added
+
+**Key Takeaway:** Weak scaling and strong scaling address different goals; throughput, latency, and speedup are the key metrics for evaluating parallel performance, but sequential bottlenecks impose an upper bound on how much parallelization can help.
+
+---
+
+#### [28. Amdahl's Law](docs/Amdahl_Law.md)
+
+Learn how Amdahl's Law predicts the maximum speedup achievable by parallelizing a program, and why sequential bottlenecks impose a hard upper limit on performance gains.
+
+**Key Concepts:**
+
+- **Amdahl's Law Formula** - Speedup = 1 / ((1 - P) + P/S), where P is the parallelizable portion and S is the number of processors
+- **Hard Upper Limit** - The non-parallelizable portion sets a ceiling on speedup regardless of how many processors are added
+- **Diminishing Returns** - Adding more processors yields progressively smaller gains; e.g., a 95% parallelizable program caps at ~20x speedup even with millions of processors
+- **Parallelizable Portion Impact** - 90% parallelizable → max 10x; 75% parallelizable → max 4x; 50% parallelizable → max 2x
+- **Practical Decision-Making** - Helps determine whether the cost and complexity of parallelization are justified for a given program
+
+**Key Takeaway:** Amdahl's Law shows that the sequential portion of a program, however small, ultimately limits parallel speedup; parallelization is most beneficial for programs with a very high parallelizable fraction, and the overhead of parallelization must always be weighed against the theoretical gains.
+
+---
+
+#### [29. Measuring Speedup and Efficiency](docs/Measure_Speedup.md)
+
+Learn how to empirically measure parallel performance using speedup and efficiency metrics, and follow best practices for reliable benchmarking.
+
+**Key Concepts:**
+
+- **Speedup** - Ratio of sequential to parallel execution time; any value > 1 indicates improvement from parallelization
+- **Efficiency** - Speedup divided by the number of processors; describes how well processors are utilized
+- **Empirical Measurement** - Actual timing data complements theoretical estimates like Amdahl's Law
+- **Diminishing Efficiency** - More processors typically yield higher speedup but lower efficiency per processor
+- **Benchmarking Best Practices** - Limit competing programs, average multiple runs, allow JIT warm-up, and run once before measurement for a consistent cache state
+
+**Key Takeaway:** Speedup and efficiency are complementary metrics for evaluating parallelization; reliable measurement requires controlled conditions, multiple runs, and awareness of environmental factors like JIT compilation and cache state.
+
+---
