@@ -1,10 +1,9 @@
-#include <thread>
 #include <chrono>
 #include <cstdio>
+#include <thread>
 
-void sequential_matrix_multiply(long** A, const size_t num_rows_a, const size_t num_cols_a,
-                                long** B, const size_t num_rows_b, const size_t num_cols_b,
-                                long** C)
+void sequential_matrix_multiply(long** A, const size_t num_rows_a, const size_t num_cols_a, long** B,
+                                const size_t num_rows_b, const size_t num_cols_b, long** C)
 {
     for (size_t i = 0; i < num_rows_a; i++)
     {
@@ -20,9 +19,8 @@ void sequential_matrix_multiply(long** A, const size_t num_rows_a, const size_t 
 }
 
 /* parallel implementation of matrix multiply */
-void parallel_matrix_multiply(long** A, const size_t num_rows_a, const size_t num_cols_a,
-                              long** B, size_t num_rows_b, const size_t num_cols_b,
-                              long** C)
+void parallel_matrix_multiply(long** A, const size_t num_rows_a, const size_t num_cols_a, long** B, size_t num_rows_b,
+                              const size_t num_cols_b, long** C)
 {
     auto thread_worker = [&](const size_t start_row, const size_t end_row)
     {
