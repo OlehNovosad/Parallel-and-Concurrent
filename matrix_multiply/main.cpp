@@ -37,7 +37,7 @@ void parallel_matrix_multiply(long** A, const size_t num_rows_a, const size_t nu
         }
     };
 
-    constexpr size_t NUM_THREADS = 10;
+    const size_t NUM_THREADS = std::thread::hardware_concurrency();
 
     std::thread threads[NUM_THREADS];
     const size_t rows_per_thread = num_rows_a / NUM_THREADS;
