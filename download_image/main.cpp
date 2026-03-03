@@ -1,3 +1,4 @@
+#include <list>
 #include <thread>
 #include <curl/curl.h>
 #include "boost/asio.hpp"
@@ -21,10 +22,12 @@ size_t sequential_image_downloader(int num_images)
 /* parallel implementation of image downloader */
 size_t parallel_image_downloader(const int num_images)
 {
+    /* Usage if thread pool */
+#if 0
     std::atomic<size_t> total_bytes(0);
     boost::asio::thread_pool thread_pool(30); // create a thread pool with 20 threads
 
-    for (int i = 0; i <= num_images; i++)
+    for (int i = 1; i <= num_images; i++)
     {
         boost::asio::post(thread_pool, [i, &total_bytes] { total_bytes = download_image(i); });
     }
@@ -32,6 +35,25 @@ size_t parallel_image_downloader(const int num_images)
     thread_pool.join();
 
     return total_bytes.load();
+#endif
+
+    /* Usage if future */
+#if 1
+    size_t total_bytes = 0;
+    std::list<std::future<size_t>> download_futures;
+
+    for (int i = 1; i <= num_images; i++)
+    {
+        download_futures.push_back(std::async(std::launch::async, download_image, i));
+    }
+
+    for (auto& future : download_futures)
+    {
+        total_bytes += future.get();
+    }
+
+    return total_bytes;
+#endif
 }
 
 /* helper function to download a single image and return size in bytes */
